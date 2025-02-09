@@ -1,0 +1,2 @@
+def Int length(String word) =
+		4;

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "abs",
+      "camelcase": "Abs",
+      "title": "Abstract Behavioural Specification language",
+      "scope": "source.abs",
+      "file-types": [
+        "abs"
+      ],
+      "injection-regex": "^abs$",
+      "class-name": "TreeSitterAbs"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "ABS is a language for Abstract Behavioral Specification, which combines implementation-level specifications with verifiability, high-level design with executablity, and formal semantics with practical usability. ABS is a concurrent, object-oriented, modeling language that features functional data-types.",
+    "authors": [
+      {
+        "name": " "
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/abstools/abstools"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
