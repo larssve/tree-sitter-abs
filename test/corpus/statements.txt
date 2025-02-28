@@ -1,0 +1,36 @@
+===================================================
+Function definitions can have empty parameter lists
+:skip
+===================================================
+def Unit length() =
+		null;
+
+---
+
+(source_file
+  (definition
+    (function_definition
+      (type)
+      (identifier)
+      (parameter_list)
+      (pure_exp))))
+
+===================
+Some other function
+:skip
+===================
+def Unit length(String word) =
+		4;
+
+---
+
+(source_file
+  (definition
+    (function_definition
+      (type)
+      (identifier)
+      (parameter_list
+        (type)
+        (identifier))
+      (pure_exp
+        (int_literal)))))

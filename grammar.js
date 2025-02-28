@@ -13,14 +13,46 @@
 // @ts-check
 
 module.exports = grammar({
-  name: "abs",
+  name: 'abs',
 
   rules: {
-			source_file: $ => repeat($._definition),
+			source_file: $ => repeat($._statement),
 
-			_definition: $ => seq(
+			_statement: $ => choice(
+					$.expression_statement,
+					//$._declaration_statement,
+			),
+
+			expression_statement: $ => seq(
+					$._expression,
+					';'
+			),
+
+			_expression: $ => choice (
+					$._literal,
+			),
+
+			_literal: $ => choice(
+					$.integer_literal,
+					$.boolean_literal,
+					$.null_literal,
+			),
+
+			integer_literal: _ => token(
+					choice(
+							'0',
+							/[1-9][0-9]*/,
+					)
+			),
+
+			boolean_literal: _ => choice('true', 'false'),
+
+			null_literal: _ => "null",
+
+			// 
+			function_definition: $ => seq(
 					"def",
-					$._type,
+					$.type,
 					$.identifier,
 					$.parameter_list,
 					"=",
@@ -30,12 +62,12 @@ module.exports = grammar({
 
 			parameter_list: $ => seq(
 					"(",
-					$._type,
+					$.type,
 					$.identifier,
 					")"
 			),
 
-			_type: $ => choice(
+			type: $ => choice(
 					"Bool",
 					"Int",
 					"String",
@@ -43,12 +75,12 @@ module.exports = grammar({
 			),
 
 			pure_exp: $ => choice(
-					$._int_literal,
+					$.int_literal,
 					"null"
 			),
 
-			//_int_literal: $ => ///^[0]$|^[1-9][0-9]*$/, // lookarounds are problematic
-			_int_literal: $ => /0|[1-9][0-9]*/,
+			//int_literal: $ => ///^[0]$|^[1-9][0-9]*$/, // lookarounds are problematic
+			int_literal: $ => /0|[1-9][0-9]*/,
 
 			identifier: $ => /[a-z]([A-Za-z0-9_]*)/ 
   }

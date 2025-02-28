@@ -1,0 +1,29 @@
+========================
+integer literals
+========================
+
+0;
+1;
+11;
+103;
+
+---
+
+(source_file
+  (expression_statement (integer_literal))
+  (expression_statement (integer_literal))
+  (expression_statement (integer_literal))
+  (expression_statement (integer_literal)))
+
+===============================
+integers can not have leading 0
+===============================
+
+01;
+
+---
+
+(source_file
+	(ERROR
+	  (integer_literal))
+		(expression_statement (integer_literal)))
